@@ -23,8 +23,5 @@ setup(
     description='Utilities for interacting with chat services',
     install_requires=[
         "numpy"
-    ],
-    dependency_links=[
-        "https://pypi.airfire.org/simple/geoutils/",
     ]
 )
