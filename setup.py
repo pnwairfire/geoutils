@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
-from afchat import __version__
+from geoutils import __version__
 
 setup(
-    name='afchat',
+    name='geoutils',
     version=__version__,
     license='GPLv3+',
     author='Joel Dubowy',
