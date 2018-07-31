@@ -52,6 +52,22 @@ class TestGetCentroid(object):
         expected = [-100.83333333333333, 34.6]
         assert expected == geojson.get_centroid(g)
 
+    def test_polygon_with_hole(test):
+        g = {
+           "type": "Polygon",
+           "coordinates": [
+                [
+                    [-100.0, 34.0], [-101.0, 35.4], [-101.5, 34.4]
+                ],
+                # the hole is ignored in centroid computation
+                [
+                    [-100.2, 35.2], [-100.3, 34.4], [-100.1, 34.3]
+                ]
+           ]
+        }
+        expected = [-100.83333333333333, 34.6]
+        assert expected == geojson.get_centroid(g)
+
     def test_multi_line_string(test):
         g = {
             "type": "MultiLineString",
@@ -74,6 +90,10 @@ class TestGetCentroid(object):
                 [
                     [
                         [-100.0, 34.0], [-101.0, 35.4], [-101.5, 34.4]
+                    ],
+                    # the hole is ignored in centroid computation
+                    [
+                        [-100.2, 35.2], [-100.3, 34.4], [-100.1, 34.3]
                     ]
                 ],
                 [

@@ -12,14 +12,18 @@ def get_centroid(geometry):
         coords = geometry["coordinates"]
 
     elif geometry["type"] == "Polygon":
+        # Note: this only considers the outer boundary in the case
+        # where the polygon has hole(s)
         coords = geometry["coordinates"][0]
 
     elif geometry["type"] == "MultiLineString":
         coords = [c for p in geometry["coordinates"] for c in p]
 
     elif geometry["type"] == "MultiPolygon":
+        # Note: as with 'Polygon', this only considers the outer
+        # boundaries if any of the polygons have hole(s)
         coords = [e for p in geometry["coordinates"]
-            for c in p for e in c]
+            for c in p[0:1] for e in c]
     else:
         raise ValueError("Unsupported GeoJSON geometry type: %s",
             geometry["type"])
