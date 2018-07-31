@@ -8,11 +8,14 @@ def get_centroid(geometry):
     if geometry["type"] == "Point":
         coords = [geometry["coordinates"]]
 
-    elif geometry["type"] == "MultiPoint":
+    elif geometry["type"] in ("MultiPoint", "LineString"):
         coords = geometry["coordinates"]
 
     elif geometry["type"] == "Polygon":
         coords = geometry["coordinates"][0]
+
+    elif geometry["type"] == "MultiLineString":
+        coords = [c for p in geometry["coordinates"] for c in p]
 
     elif geometry["type"] == "MultiPolygon":
         coords = [e for p in geometry["coordinates"]
