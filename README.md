@@ -38,10 +38,10 @@ First, install pip (with sudo if necessary):
 
     apt-get install python-pip
 
-Then, to install, for example, v1.0.0, use the following (with sudo if
+Then, to install, for example, v1.0.1, use the following (with sudo if
 necessary):
 
-    pip install --extra-index https://pypi.airfire.org/simple geoutils==1.0.0
+    pip install --extra-index https://pypi.airfire.org/simple geoutils==1.0.1
 
 If you get an error like
 
