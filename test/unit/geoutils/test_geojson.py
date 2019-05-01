@@ -52,6 +52,10 @@ class TestGetCentroid(object):
         expected = [-100.83333333333333, 34.6]
         assert expected == geojson.get_centroid(g)
 
+        # should get same results if polygon has same last and first coordinates
+        g['coordinates'][0].append([-100.0, 34.0])
+        assert expected == geojson.get_centroid(g)
+
     def test_polygon_with_hole(test):
         g = {
            "type": "Polygon",
@@ -88,6 +92,7 @@ class TestGetCentroid(object):
            "type": "MultiPolygon",
            "coordinates": [
                 [
+                    # centroid is [-100.83333333333333, 34.6]
                     [
                         [-100.0, 34.0], [-101.0, 35.4], [-101.5, 34.4]
                     ],
@@ -97,11 +102,17 @@ class TestGetCentroid(object):
                     ]
                 ],
                 [
+                    # centroid is [-102.96666666666665, 34.19333333333333]
                     [
-                        [-104.1, 34.12], [-102.4, 33.23]
+                        [-104.1, 34.12], [-102.4, 33.23], [-102.4, 35.23]
                     ]
                 ]
             ]
         }
-        expected = [-101.8, 34.230000000000004]
+        expected = [-101.89999999999999, 34.39666666666666]
+        assert expected == geojson.get_centroid(g)
+
+        # should get same results if polygons have same last and first coordinates
+        g['coordinates'][0][0].append([-100.0, 34.0])
+        g['coordinates'][1][0].insert(0, [-102.4, 35.23])
         assert expected == geojson.get_centroid(g)
