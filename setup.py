@@ -15,13 +15,13 @@ setup(
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.12",
         "Operating System :: POSIX",
         "Operating System :: MacOS"
     ],
     url='https://github.com/pnwairfire/geoutils',
     description='Utilities for interacting with chat services',
     install_requires=[
-        "numpy"
+        "numpy==2.1.1"
     ]
 )
